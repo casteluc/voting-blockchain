@@ -1,16 +1,17 @@
 import { sha256 } from 'js-sha256'
 
+class Block {
+    constructor(id, vote, previousHash) {
+        this.id = id
+        this.vote = vote
+        this.timestamp = Date.now()
+        this.previousHash = previousHash
+        this.hash = this.calculateHash(this.id, this.vote, this.timestamp, this.previousHash)
+    }
 
-const Block = function(id, previousHash) {
-    this.id = id
-    this.timestamp = Date.now()
-    this.previousHash = previousHash
-    this.hash = calculateHash(this.id, this.data, this.timestamp, this.previousHash)
-    
-    function calculateHash(...blockInfo) {
+    calculateHash(...blockInfo) {
         return sha256(blockInfo.toString()) 
     }
 }
 
-let block = new Block(0, 0)
-console.log(block.hash)
+export default Block
