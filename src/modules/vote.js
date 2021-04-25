@@ -1,6 +1,8 @@
 class Vote {
-    constructor(voterCPF, optionChosen) {
-        this.voterCPF = voterCPF
+    constructor(voter, optionChosen) {
+        this.voter = voter
         this.optionChosen = optionChosen
     }
 }
+
+export default Vote
