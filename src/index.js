@@ -9,7 +9,9 @@ let blockchain = new Blockchain()
 
 let v1 = new Vote("17796014767", 0)
 blockchain.pushBlock(v1)
-blockchain.pushBlock(v1)
-blockchain.pushBlock(v1)
-blockchain.pushBlock(v1)
 console.log(blockchain.chain)
+blockchain.chain[0].data = "alterei aqui"
+blockchain.pushBlock(v1)
+
+blockchain.pushBlock(v1)
+blockchain.pushBlock(v1)

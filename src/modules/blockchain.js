@@ -15,27 +15,22 @@ class Blockchain {
     }
 
     pushBlock(vote) {
-        if (this.checkProofOfWork()) {
+        if (this.isChainValid()) {
             let {hash: lastBlockHash, id: lastBlockId} = this.getLastBlock()
             this.chain.push(new Block(lastBlockId + 1, vote, lastBlockHash))
-        } else {
-            throw "The current blockchain is not valid"
-        }
+        } 
     }
 
-    checkProofOfWork() {
-        let isApproved = true
-        let chainLength = this.chain.length
+    isChainValid() {
+        for (let i = 0; i < this.chain.length; i++) {
+            let currentBlock = this.chain[i]
 
-        if (chainLength > 0) {
-            for (let i = 1; i < chainLength; i++) {
-                if (this.chain[i].previousHash !== this.chain[i - 1].hash) {
-                    isApproved = false
-                }
+            if (currentBlock.hash !== currentBlock.calculateHash()) {
+                return false
             }
         }
 
-        return isApproved
+        return true
     }
 }
 
