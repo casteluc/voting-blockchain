@@ -7,7 +7,7 @@ class Blockchain {
     }
 
     createGenesisBlock() {
-        return new Block(0, {}, 0)
+        return new Block(0, "This is the Genesis Block", 0)
     }
 
     getLastBlock() {

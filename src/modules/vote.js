@@ -1,6 +1,8 @@
+import calculateHash from '../utils/calculateHash.js'
+
 class Vote {
-    constructor(voter, optionChosen) {
-        this.voter = voter
+    constructor(voterCPF, optionChosen) {
+        this.voterEncodedCPF = calculateHash(voter)
         this.optionChosen = optionChosen
     }
 }

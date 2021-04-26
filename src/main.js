@@ -11,8 +11,5 @@ let v1 = new Vote("17796014767", 0)
 blockchain.pushBlock(v1)
 blockchain.pushBlock(v1)
 blockchain.pushBlock(v1)
-console.log(blockchain.chain)
-
-blockchain.chain[1].hash = '123'
 blockchain.pushBlock(v1)
 console.log(blockchain.chain)
