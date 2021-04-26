@@ -15,11 +15,11 @@ class Blockchain {
         return this.chain[this.chain.length - 1]
     }
 
-    pushBlock(vote) {
+    pushBlock(data) {
         if (this.isChainValid()) {
-            let {hash: lastBlockHash, id: lastBlockId} = this.getLastBlock()
+            let {hash: lastBlockHash} = this.getLastBlock()
 
-            let newBlock = new Block(lastBlockId + 1, vote, lastBlockHash)
+            let newBlock = new Block(data, lastBlockHash)
             newBlock.mineBlock(this.difficulty)
 
             this.chain.push(newBlock)
