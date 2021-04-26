@@ -4,6 +4,7 @@ class Blockchain {
     constructor(options) {
         this.chain = [this.createGenesisBlock()]
         this.options = options
+        this.difficulty = 5
     }
 
     createGenesisBlock() {
@@ -17,12 +18,16 @@ class Blockchain {
     pushBlock(vote) {
         if (this.isChainValid()) {
             let {hash: lastBlockHash, id: lastBlockId} = this.getLastBlock()
-            this.chain.push(new Block(lastBlockId + 1, vote, lastBlockHash))
+
+            let newBlock = new Block(lastBlockId + 1, vote, lastBlockHash)
+            newBlock.mineBlock(this.difficulty)
+
+            this.chain.push(newBlock)
         } 
     }
 
     isChainValid() {
-        for (let i = 0; i < this.chain.length; i++) {
+        for (let i = 1; i < this.chain.length; i++) {
             let currentBlock = this.chain[i]
 
             if (currentBlock.hash !== currentBlock.calculateHash()) {
@@ -31,6 +36,10 @@ class Blockchain {
         }
 
         return true
+    }
+
+    updateDifficulty(newDifficulty) {
+        this.difficulty = newDifficulty
     }
 }
 
