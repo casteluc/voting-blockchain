@@ -8,8 +8,6 @@ class Block {
         this.previousHash = previousHash
         this.hash = calculateHash(this.id, this.data, this.timestamp, this.previousHash)
     }
-
-
 }
 
 export default Block
